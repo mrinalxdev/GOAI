@@ -2,6 +2,11 @@ import SignInBtn from "@/components/buttons/SignInBtn";
 import ThemeBtn from "@/components/buttons/ThemeBtn";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
+import Avatar from "@/components/Avatar";
+import Logo from "../assets/Logo.png";
+import Image from "next/image";
+import SearchInput from "@/components/SearchInput";
+import "./globals.css"
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -12,16 +17,14 @@ export default async function Home() {
         <div className="flex item-center justify-between container mx-auto">
           <ThemeBtn />
 
-          {session ? (
-            <p className="btn text-[25px] flex items-center justify-center btn-circle dark:text-white dark:bg-neutral text-neutral bg-transparent hover:text-white">
-              🙂
-            </p>
-          ) : (
-            <SignInBtn />
-          )}
+          {session ? <Avatar user={session.user?.name?.[0]} /> : <SignInBtn />}
         </div>
       </header>
-      <main></main>
+      <main className="flex container mx-auto justify-center h-screen items-center flex-col gap-10">
+        <Image src={Logo} alt="logo" className="rounded-full w-[250px]" />
+
+        <SearchInput />
+      </main>
       <footer></footer>
     </div>
   );
