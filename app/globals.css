@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.gr {
-  border : double 3px transparent;
-  border-radius: 6px;
-  background-image: linear-gradient(white, white), linear-gradient(to right, #4385f4, #ea4335, #fbbc05, #34a853, );
-}
